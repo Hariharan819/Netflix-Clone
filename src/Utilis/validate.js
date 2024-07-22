@@ -1,5 +1,7 @@
-export const checkvalidation = (Email, password, Name) => {
-  const isemailvalid = /^[\w\-\.]+@([\w-]+\.)+[\w-]{2,}$/gm.test(Email);
+export const checkvalidation = (Email, password,Name) => {
+  const isemailvalid = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(
+    Email
+  );
 
   const ispasswordvalid =
     /^((?=\S*?[A-Z])(?=\S*?[a-z])(?=\S*?[0-9]).{6,})\S$/.test(password);

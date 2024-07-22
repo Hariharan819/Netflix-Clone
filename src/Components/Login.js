@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Header from ".//Header";
 import { Backgrdimg_URL } from "../Utilis/constant";
 import { checkvalidation } from "../Utilis/validate";
@@ -7,19 +7,16 @@ const Login = () => {
   const toggledfeature = () => {
     setsigninform(!signinform);
   };
-
   const [errormsg, seterrormsg] = useState(null);
-  const email = useRef(null);
-  const password = useRef(null);
-  const name = useRef(null);
+  const Email = useRef(null);
+  const Password = useRef(null);
+  const Name = useRef(null);
   const validationcheck = () => {
     const message = checkvalidation(
-      email.current.value,
-      password.current.value,
-      name.current.value
+      Email.current.value,
+      Password.current.value
     );
     seterrormsg(message);
-    console.log(message);
   };
   return (
     <div>
@@ -39,22 +36,22 @@ const Login = () => {
 
         {!signinform && (
           <input
-            ref={name}
+          ref={Name}
             type="text"
             placeholder=" Full Name"
             className="p-3 mx-4  my-4 rounded-md text-white bg-slate-800 "
           />
         )}
         <input
-          ref={email}
+          ref={Email}
           type="text"
           placeholder="Email"
           className="p-3 mx-4  my-4 rounded-md text-white bg-slate-800 "
         />
         <input
-          ref={password}
+          ref={Password}
           type="password"
-          placeholder="Password"
+          placeholder="*Password"
           className="p-3 mx-4  my-4 rounded-md text-white bg-slate-800"
         />
         <p className="text-red-700 py-1 font-semibold  mx-4 ">{errormsg}</p>
