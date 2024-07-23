@@ -2,6 +2,12 @@ import { useRef, useState } from "react";
 import Header from ".//Header";
 import { Backgrdimg_URL } from "../Utilis/constant";
 import { checkvalidation } from "../Utilis/validate";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../Utilis/firebase";
+
 const Login = () => {
   const [signinform, setsigninform] = useState(true);
   const toggledfeature = () => {
@@ -10,13 +16,47 @@ const Login = () => {
   const [errormsg, seterrormsg] = useState(null);
   const Email = useRef(null);
   const Password = useRef(null);
-  const Name = useRef(null);
+  // const Name = useRef(null);
   const validationcheck = () => {
     const message = checkvalidation(
       Email.current.value,
       Password.current.value
     );
     seterrormsg(message);
+    if (message) return;
+
+    if (!signinform) {
+      //sigin up
+      createUserWithEmailAndPassword(
+        auth,
+        Email.current.value,
+        Password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          seterrormsg(errorMessage);
+        });
+    } else {
+      //sigin
+
+      signInWithEmailAndPassword(
+        auth,
+        Email.current.value,
+        Password.current.value
+      )
+        .then((userCredential) => {
+          const user = userCredential.user;
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          seterrormsg(errorMessage);
+        });
+    }
   };
   return (
     <div>
@@ -36,7 +76,7 @@ const Login = () => {
 
         {!signinform && (
           <input
-          ref={Name}
+            // ref={Name}
             type="text"
             placeholder=" Full Name"
             className="p-3 mx-4  my-4 rounded-md text-white bg-slate-800 "
