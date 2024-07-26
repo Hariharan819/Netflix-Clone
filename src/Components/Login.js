@@ -74,24 +74,31 @@ const Login = () => {
           {signinform ? "Sign In" : "Sign Up"}
         </h1>
 
-        {!signinform && (
+
+        {!signinform ? (
           <input
-            // ref={Name}
             type="text"
-            placeholder=" Full Name"
-            className="p-3 mx-4  my-4 rounded-md text-white bg-slate-800 "
+            placeholder="Full Name"
+            className="p-3 mx-4 my-4 rounded-md text-white bg-slate-800"
           />
+        ) : (
+          <p></p>
         )}
+
+        {/* {!signinform && ()} */}
+        
         <input
           ref={Email}
           type="text"
           placeholder="Email"
+          autoComplete="on"
           className="p-3 mx-4  my-4 rounded-md text-white bg-slate-800 "
         />
         <input
           ref={Password}
           type="password"
-          placeholder="*Password"
+          placeholder="Password"
+          autoComplete="on"
           className="p-3 mx-4  my-4 rounded-md text-white bg-slate-800"
         />
         <p className="text-red-700 py-1 font-semibold  mx-4 ">{errormsg}</p>
