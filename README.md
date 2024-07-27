@@ -1,0 +1,6 @@
+-sign in /sign up page
+-routing
+-validation
+-firebase config
+-authentication
+-redux
