@@ -1,14 +1,32 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Header from ".//Header";
 import { Backgrdimg_URL } from "../Utilis/constant";
 import { checkvalidation } from "../Utilis/validate";
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../Utilis/firebase";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { adduser, removeuser } from "../ReduxUtils/userslice";
 
 const Login = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const { uid, email, displayName } = user;
+        dispatch(adduser({ uid: uid, email: email, dispatch: displayName }));
+      } else {
+        dispatch(removeuser);
+      }
+    });
+  }, []);
+  const navigate = useNavigate();
   const [signinform, setsigninform] = useState(true);
   const toggledfeature = () => {
     setsigninform(!signinform);
@@ -34,6 +52,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -50,6 +69,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
+          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -74,7 +94,6 @@ const Login = () => {
           {signinform ? "Sign In" : "Sign Up"}
         </h1>
 
-
         {!signinform ? (
           <input
             type="text"
@@ -86,7 +105,7 @@ const Login = () => {
         )}
 
         {/* {!signinform && ()} */}
-        
+
         <input
           ref={Email}
           type="text"
