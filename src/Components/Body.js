@@ -1,8 +1,7 @@
-
 import Login from "./Login";
 const Body = () => {
   return (
-    <div> 
+    <div>
       <Login />
     </div>
   );

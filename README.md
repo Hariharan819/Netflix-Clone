@@ -4,3 +4,5 @@
 -firebase config
 -authentication
 -redux
+-user data storing
+-signout --- user data remove

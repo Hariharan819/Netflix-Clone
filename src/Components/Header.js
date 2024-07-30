@@ -1,5 +1,5 @@
 import React from "react";
-import { Logo_URL} from "../Utilis/constant";;
+import { Logo_URL } from "../Utilis/constant";
 
 const Header = () => {
   // const navigate=useNavigate();
@@ -22,9 +22,7 @@ const Header = () => {
         <img src={profile_url} alt=""  className="h-10 mx-14 my-3"/>
        <button onClick={sigoutfn} className="text-white text-xl py-3 -mx-12 font-serif">Sign out</button>
     </div>)}   */}
-
     </div>
-    
   );
 };
 
