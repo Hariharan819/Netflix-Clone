@@ -19,7 +19,7 @@ const Browseheader = () => {
       });
   };
   return (
-    <div className="absolute w-12/12 px-16 py-2 bg-gradient-to-b from-gray-900 z-30 flex justify-between">
+    <div className="absolute w-screen px-16 py-2 bg-gradient-to-b from-gray-900 z-30 flex justify-between">
       <img src={Logo_URL} alt="logo" className="w-40" />
       <div className="flex">
         <img src={profile_url} alt="" className="h-10 mx-14 my-3" />
