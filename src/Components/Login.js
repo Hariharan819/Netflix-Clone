@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../Utilis/firebase";
 import { useNavigate } from "react-router-dom";
@@ -14,18 +15,20 @@ import { adduser, removeuser } from "../ReduxUtils/userslice";
 
 const Login = () => {
   const dispatch = useDispatch();
+
   useEffect(() => {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         // User is signed in, see docs for a list of available properties
         // https://firebase.google.com/docs/reference/js/auth.user
-        const { uid, email, displayName } = user;
-        dispatch(adduser({ uid: uid, email: email, dispatch: displayName }));
+        const { uid, email, displayName } = auth.currentUser;
+        dispatch(adduser({ uid: uid, email: email, displayName: displayName }));
       } else {
         dispatch(removeuser);
       }
     });
   }, []);
+
   const navigate = useNavigate();
   const [signinform, setsigninform] = useState(true);
   const toggledfeature = () => {
@@ -34,7 +37,7 @@ const Login = () => {
   const [errormsg, seterrormsg] = useState(null);
   const Email = useRef(null);
   const Password = useRef(null);
-  // const Name = useRef(null);
+  const Name = useRef(null);
   const validationcheck = () => {
     const message = checkvalidation(
       Email.current.value,
@@ -52,7 +55,23 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate("/browse");
+          updateProfile(user, {
+            displayName: Name.current.value,
+            photoURL: "https://example.com/jane-q-user/profile.jpg",
+          })
+            .then(() => {
+              // Profile updated!
+              // ...
+              const { uid, email, displayName } = auth.currentUser;
+              dispatch(
+                adduser({ uid: uid, email: email, displayName: displayName })
+              );
+              navigate("/browse");
+            })
+            .catch((error) => {
+              // An error occurred
+              // ...
+            });
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -82,7 +101,7 @@ const Login = () => {
     <div>
       <Header />
       <div className="absolute" l>
-        <img src={Backgrdimg_URL} alt="bgimg" className="w-12/12" />
+        <img src={Backgrdimg_URL} alt="bgimg" className="w-12/12 w-screen" />
       </div>
 
       <form
@@ -97,6 +116,7 @@ const Login = () => {
         {!signinform ? (
           <input
             type="text"
+            ref={Name}
             placeholder="Full Name"
             className="p-3 mx-4 my-4 rounded-md text-white bg-slate-800"
           />
