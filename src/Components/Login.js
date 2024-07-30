@@ -100,8 +100,8 @@ const Login = () => {
   return (
     <div>
       <Header />
-      <div className="absolute" l>
-        <img src={Backgrdimg_URL} alt="bgimg" className="w-12/12 w-screen" />
+      <div className="absolute">
+        <img src={Backgrdimg_URL} alt="bgimg" className="w-12/12" />
       </div>
 
       <form

@@ -1,9 +1,9 @@
 import React from "react";
-import Header from "./Header";
+import Browseheader from "./Browseheader";
 
 const Browse = () => {
   return(
-    <Header/>
+    <Browseheader/>
   )
 };
 
