@@ -1,19 +1,30 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Logo_URL } from "../Utilis/constant";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "../Utilis/firebase";
+import { adduser, removeuser } from "../ReduxUtils/userslice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
-  // const navigate=useNavigate();
-  // const user=useSelector((store)=>store.user);
-  // const sigoutfn = () => {
-  //   signOut(auth)
-  //     .then(() => {
-  //       // Sign-out successful.
-  //       navigate("/");
-  //     })
-  //     .catch((error) => {
-  //       // An error happened.
-  //     });
-  // };
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+   const unsubscribe= onAuthStateChanged(auth, (user) => {
+      if (user) {
+        // User is signed in, see docs for a list of available properties
+        // https://firebase.google.com/docs/reference/js/auth.user
+        const { uid, email, displayName } = auth.currentUser;
+        dispatch(adduser({ uid: uid, email: email, displayName: displayName }));
+        navigate("/browse");
+      } else {
+        dispatch(removeuser);
+        navigate("/");
+      }
+    });
+ return ()=> unsubscribe();
+  }, []);
+
   return (
     <div className="absolute px-16 py-2 bg-gradient-to-b from-gray-900 z-30">
       <img src={Logo_URL} alt="logo" className="w-40" />

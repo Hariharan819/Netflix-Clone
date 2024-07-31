@@ -1,35 +1,18 @@
-import { useEffect, useRef, useState } from "react";
+import {useRef, useState } from "react";
 import Header from ".//Header";
 import { Backgrdimg_URL } from "../Utilis/constant";
 import { checkvalidation } from "../Utilis/validate";
 import {
   createUserWithEmailAndPassword,
-  onAuthStateChanged,
   signInWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../Utilis/firebase";
-import { useNavigate } from "react-router-dom";
+import { adduser } from "../ReduxUtils/userslice";
 import { useDispatch } from "react-redux";
-import { adduser, removeuser } from "../ReduxUtils/userslice";
 
 const Login = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        // User is signed in, see docs for a list of available properties
-        // https://firebase.google.com/docs/reference/js/auth.user
-        const { uid, email, displayName } = auth.currentUser;
-        dispatch(adduser({ uid: uid, email: email, displayName: displayName }));
-      } else {
-        dispatch(removeuser);
-      }
-    });
-  });
-
-  const navigate = useNavigate();
+  const dispatch=useDispatch();
   const [signinform, setsigninform] = useState(true);
   const toggledfeature = () => {
     setsigninform(!signinform);
@@ -66,7 +49,7 @@ const Login = () => {
               dispatch(
                 adduser({ uid: uid, email: email, displayName: displayName })
               );
-              navigate("/browse");
+              // navigate("/browse");
             })
             .catch((error) => {
               // An error occurred
@@ -88,7 +71,7 @@ const Login = () => {
       )
         .then((userCredential) => {
           const user = userCredential.user;
-          navigate("/browse");
+          // navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
