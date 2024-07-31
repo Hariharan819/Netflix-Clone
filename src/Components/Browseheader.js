@@ -19,7 +19,7 @@ const Browseheader = () => {
         dispatch(adduser({ uid: uid, email: email, displayName: displayName }));
         navigate("/browse");
       } else {
-        dispatch(removeuser);
+        dispatch(removeuser());
         navigate("/");
       }
     });

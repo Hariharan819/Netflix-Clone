@@ -6,3 +6,5 @@
 -redux
 -user data storing
 -signout --- user data remove
+--tmdb for movie db
+
