@@ -11,7 +11,7 @@ const Browse = () => {
   const dispatch = useDispatch();
   const api_fetch = async () => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1",
+      "https://api.themoviedb.org/3/movie/now_playing?language=en-US",
       API_OPTIONS
     );
     const json = await data.json();

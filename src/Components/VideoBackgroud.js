@@ -24,14 +24,17 @@ const VideoBackgroud = ({ movieid }) => {
     moviefetchapi();
   }, []);
   return (
-    <div>
+    <div className="w-[100%]">
       <iframe
-        width="560"
-        height="315"
-        src={"https://www.youtube.com/embed/" + ytkeyfromreduxstore?.key}
+        className="aspect-video w-[100%]"
+        src={
+          "https://www.youtube.com/embed/" +
+          ytkeyfromreduxstore?.key +
+          "?&autoplay=1&mute=1"
+        }
         title="YouTube video player"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerPolicy="strict-origin-when-cross-origin"
+        allow="accelerometer;clipboard-write; gyroscope;fullscreen;"
+        allowFullScreen
       ></iframe>
     </div>
   );
