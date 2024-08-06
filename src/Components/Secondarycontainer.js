@@ -12,7 +12,14 @@ const Secondarycontainer = () => {
           title={"Now playing"}
           moviedata={moviedatafromreduxstore.movieslist}
         />
-        <Movielist title={"Popular"} moviedata={moviedatafromreduxstore.popmovie}/>
+        <Movielist
+          title={"Popular"}
+          moviedata={moviedatafromreduxstore.popmovie}
+        />
+        <Movielist
+          title={"Top Rated"}
+          moviedata={moviedatafromreduxstore.topmovie}
+        />
       </div>
     </div>
   );
