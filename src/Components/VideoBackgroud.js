@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { API_OPTIONS } from "../Utilis/constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addmovieinfo } from "../ReduxUtils/movieslice";
@@ -26,7 +26,7 @@ const VideoBackgroud = ({ movieid }) => {
   return (
     <div className="w-[100%]">
       <iframe
-        className="aspect-video w-[100%] "
+        className="aspect-video w-[100%] -mt-14 "
         src={
           "https://www.youtube.com/embed/" +
           ytkeyfromreduxstore?.key +
@@ -34,7 +34,6 @@ const VideoBackgroud = ({ movieid }) => {
         }
         title="YouTube video player"
         allow="accelerometer;clipboard-write; gyroscope;fullscreen;"
-        allowFullScreen
       ></iframe>
     </div>
   );

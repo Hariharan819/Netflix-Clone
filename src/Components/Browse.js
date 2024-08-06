@@ -20,7 +20,7 @@ const Browse = () => {
   };
   useEffect(() => {
     api_fetch();
-  },[]);
+  }, []);
 
   return (
     <div>
