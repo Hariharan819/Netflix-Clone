@@ -48,7 +48,7 @@ const Browse = () => {
   }, []);
 
   return (
-    <div>
+    <div className="no-scrollbar">
       <Browseheader />
       <Maincontainer />
       <Secondarycontainer />
