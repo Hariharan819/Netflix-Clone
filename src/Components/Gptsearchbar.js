@@ -20,8 +20,6 @@ const Gptsearchbar = () => {
           Search
         </button>
       </div>
-
-
     </div>
   );
 };

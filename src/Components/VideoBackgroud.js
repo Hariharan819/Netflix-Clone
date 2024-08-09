@@ -24,7 +24,7 @@ const VideoBackgroud = ({ movieid }) => {
     moviefetchapi();
   }, []);
   return (
-    <div className="w-[100%] ">
+    <div className="w-[100%] no-scrollbar">
       <iframe
         className="aspect-video w-[100%]  "
         src={

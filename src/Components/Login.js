@@ -1,4 +1,4 @@
-import {useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Header from ".//Header";
 import { Backgrdimg_URL } from "../Utilis/constant";
 import { checkvalidation } from "../Utilis/validate";
@@ -12,7 +12,7 @@ import { adduser } from "../ReduxUtils/userslice";
 import { useDispatch } from "react-redux";
 
 const Login = () => {
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
   const [signinform, setsigninform] = useState(true);
   const toggledfeature = () => {
     setsigninform(!signinform);

@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const movieslice = createSlice({
   name: "movies",
   initialState: {
@@ -7,6 +6,8 @@ const movieslice = createSlice({
     trailerinfo: null,
     popmovie: null,
     topmovie: null,
+    id_data: null,
+    keydata: null,
   },
   reducers: {
     addmovieslist: (state, action) => {
@@ -21,9 +22,25 @@ const movieslice = createSlice({
     addtopinfo: (state, action) => {
       state.topmovie = action.payload;
     },
+    addidinfo: (state, action) => {
+      state.id_data = action.payload;
+    },
+    addkeyinfo: (state, action) => {
+      state.keydata = action.payload;
+    },
+    removekeyinfo: (state, action) => {
+      return null;
+    },
   },
 });
 
-export const { addmovieslist, addmovieinfo, addpopinfo, addtopinfo } =
-  movieslice.actions;
+export const {
+  addmovieslist,
+  addmovieinfo,
+  addpopinfo,
+  addtopinfo,
+  addidinfo,
+  addkeyinfo,
+  removekeyinfo,
+} = movieslice.actions;
 export default movieslice.reducer;

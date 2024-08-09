@@ -66,4 +66,4 @@ const Browseheader = () => {
   );
 };
 
-export default Browseheader;  
+export default Browseheader;
