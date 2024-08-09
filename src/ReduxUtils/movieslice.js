@@ -7,7 +7,6 @@ const movieslice = createSlice({
     trailerinfo: null,
     popmovie: null,
     topmovie: null,
-    ytkeys:[],
   },
   reducers: {
     addmovieslist: (state, action) => {
@@ -22,17 +21,9 @@ const movieslice = createSlice({
     addtopinfo: (state, action) => {
       state.topmovie = action.payload;
     },
-    addidinfo: (state, action) => {
-      state.ytkeys = action.payload;
-    },
   },
 });
 
-export const {
-  addmovieslist,
-  addmovieinfo,
-  addpopinfo,
-  addtopinfo,
-  addidinfo,
-} = movieslice.actions;
+export const { addmovieslist, addmovieinfo, addpopinfo, addtopinfo } =
+  movieslice.actions;
 export default movieslice.reducer;

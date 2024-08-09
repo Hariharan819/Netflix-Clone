@@ -24,9 +24,9 @@ const VideoBackgroud = ({ movieid }) => {
     moviefetchapi();
   }, []);
   return (
-    <div className="w-[100%]">
+    <div className="w-[100%] ">
       <iframe
-        className="aspect-video w-[100%] -mt-14 "
+        className="aspect-video w-[100%]  "
         src={
           "https://www.youtube.com/embed/" +
           ytkeyfromreduxstore?.key +

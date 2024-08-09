@@ -7,7 +7,7 @@ const Secondarycontainer = () => {
   // console.log(moviedatafromreduxstore);
   return (
     <div className="bg-stone-950">
-      <div className="-mt-40 relative z-20">
+      <div className="-mt-64 relative z-20">
         <Movielist
           title={"Now playing"}
           moviedata={moviedatafromreduxstore.movieslist}
