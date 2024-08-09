@@ -10,6 +10,7 @@ import { addgptinfo } from "../ReduxUtils/Gptslice";
 const Browseheader = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const gptdatafromreduxstore = useSelector((store) => store.gptdata.gptinfos);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -51,7 +52,7 @@ const Browseheader = () => {
           className="bg-green-400 px-4  my-4 rounded-sm -mx-10  text-black font-serif "
           onClick={gptsearchevnt}
         >
-          GPT Search
+          {gptdatafromreduxstore ? "HomePage" : "GPT Search"}
         </button>
         <img src={profile_url} alt="" className="h-10 mx-14 my-3 rounded-sm" />
         <button
@@ -65,4 +66,4 @@ const Browseheader = () => {
   );
 };
 
-export default Browseheader;
+export default Browseheader;  
