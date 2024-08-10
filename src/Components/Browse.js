@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import Browseheader from "./Browseheader";
 import { API_OPTIONS } from "../Utilis/constant";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -10,6 +9,7 @@ import {
 import Maincontainer from "./Maincontainer";
 import Secondarycontainer from "./Secondarycontainer";
 import Gptsearchpage from "./Gptsearchpage";
+import Header from "./Header";
 // import { json } from "react-router-dom";
 
 const Browse = () => {
@@ -59,11 +59,12 @@ const Browse = () => {
     api_fetch();
     apifetchpop();
     apifetchtoprated();
+     // eslint-disable-next-line
   }, []);
 
   return (
     <div className="no-scrollbar">
-      <Browseheader />
+      <Header/>
       {gptdatafromreduxstore ? (
         <Gptsearchpage />
       ) : (
