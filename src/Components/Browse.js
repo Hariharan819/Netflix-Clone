@@ -65,7 +65,7 @@ const Browse = () => {
     <div className="no-scrollbar">
       <Browseheader />
       {gptdatafromreduxstore ? (
-      <Gptsearchpage />
+        <Gptsearchpage />
       ) : (
         <>
           <Maincontainer />

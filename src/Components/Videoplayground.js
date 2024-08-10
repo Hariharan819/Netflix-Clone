@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../Utilis/constant";
-import { addkeyinfo, removekeyinfo } from "../ReduxUtils/movieslice";
+import { addkeyinfo } from "../ReduxUtils/movieslice";
 
-const Videoplayground = () => {
+const Videoplayground = (data) => {
   const dispatch = useDispatch();
-  const [keyvalue, setkeyvalue] = useState(0);
-  const [keyvalue2, setkeyvalue2] = useState(0);
+  // const navigate = useNavigate();
 
-  const ytkeyfromreduxstore = useSelector((store) => store?.movies?.id_data);
+  const ytkeyfromreduxstore = useSelector(
+    (store) => store?.movies?.id_data?.[0]
+  );
   const keyfromstore = useSelector((store) => store?.movies?.keydata);
   const movieid = ytkeyfromreduxstore?.id;
 
@@ -19,17 +20,16 @@ const Videoplayground = () => {
       `https://api.themoviedb.org/3/movie/${movieid}/videos?language=en-US`,
       API_OPTIONS
     );
-    const json = await data.json();
-    if (json.results) {
-      const trailer = json.results.filter(
-        (videos) => videos.type === "Trailer"
+    const json = await data?.json();
+    if (json?.results) {
+      const trailer = json?.results?.filter(
+        (videos) => videos?.type === "Trailer"
       );
-      const filtertrailer = trailer.length ? trailer[0] : json.results[0];
+      const filtertrailer = trailer?.length ? trailer[0] : json?.results[0];
       dispatch(addkeyinfo(filtertrailer));
     } else {
-      dispatch(removekeyinfo());
     }
-
+    // state.items.push(action.payload);
     // console.log(filtertrailer);
     // setkeyvalue2(keyfromstore?.data);
   };

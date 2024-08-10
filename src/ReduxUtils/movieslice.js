@@ -6,7 +6,7 @@ const movieslice = createSlice({
     trailerinfo: null,
     popmovie: null,
     topmovie: null,
-    id_data: null,
+    id_data: [],
     keydata: null,
   },
   reducers: {
@@ -23,7 +23,7 @@ const movieslice = createSlice({
       state.topmovie = action.payload;
     },
     addidinfo: (state, action) => {
-      state.id_data = action.payload;
+      state.id_data.push(action.payload);
     },
     addkeyinfo: (state, action) => {
       state.keydata = action.payload;
