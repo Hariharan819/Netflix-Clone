@@ -2,6 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Login from "./Components/Login";
 import Browse from "./Components/Browse";
 import Videoplayground from "./Components/Videoplayground";
+
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -12,7 +13,7 @@ const appRouter = createBrowserRouter([
     element: <Browse />,
   },
   {
-    path: "/videoplayground",
+    path: "/videoplayground/:id",
     element: <Videoplayground/>,
   },
 ]);

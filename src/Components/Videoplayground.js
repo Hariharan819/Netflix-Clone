@@ -2,22 +2,17 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../Utilis/constant";
 import { addkeyinfo } from "../ReduxUtils/movieslice";
+import { useNavigate, useParams } from "react-router-dom";
 
-const Videoplayground = (data) => {
+const Videoplayground = () => {
+  const { id } = useParams();
+  const navigate=useNavigate();
   const dispatch = useDispatch();
-  // const navigate = useNavigate();
-
-  const ytkeyfromreduxstore = useSelector(
-    (store) => store?.movies?.id_data?.[0]
-  );
   const keyfromstore = useSelector((store) => store?.movies?.keydata);
-  const movieid = ytkeyfromreduxstore?.id;
-
-  // setkeyvalue(ytkeyfromreduxstore?.id);
-
   const moviefetchapi = async () => {
+
     const data = await fetch(
-      `https://api.themoviedb.org/3/movie/${movieid}/videos?language=en-US`,
+      `https://api.themoviedb.org/3/movie/${id}/videos?language=en-US`,
       API_OPTIONS
     );
     const json = await data?.json();
@@ -28,7 +23,9 @@ const Videoplayground = (data) => {
       const filtertrailer = trailer?.length ? trailer[0] : json?.results[0];
       dispatch(addkeyinfo(filtertrailer));
     } else {
+      navigate("/browse");
     }
+
     // state.items.push(action.payload);
     // console.log(filtertrailer);
     // setkeyvalue2(keyfromstore?.data);
