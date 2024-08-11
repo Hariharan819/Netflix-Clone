@@ -1,12 +1,16 @@
 import React, { useRef } from "react";
 import { API_OPTIONS, Backgrdimg_URL } from "../Utilis/constant";
-import { useDispatch } from "react-redux";
-import { addmovieinfo, addsearchmovieinfo } from "../ReduxUtils/movieslice";
+import { useDispatch, useSelector } from "react-redux";
+import Searchcointainers from "./Searchcointainers";
+import { addsearchmovieinfo } from "../ReduxUtils/searchslice";
 
 const Gptsearchbar = () => {
   const dispatch = useDispatch();
+  // const gptdatafromreduxstore = useSelector((store) => store.gptdata.gptinfos);
+  const searchresultfromstore = useSelector(
+    (store) => store?.searchresult?.searchmovieinfo
+  );
   const searchvalue = useRef(null);
-
   const searchevent = async () => {
     const data = await fetch(
       "https://api.themoviedb.org/3/search/movie?query=" +
@@ -14,14 +18,16 @@ const Gptsearchbar = () => {
         "&include_adult=false&language=en-US&page=1",
       API_OPTIONS
     );
-    const jsondata = await data?.json();
-    // console.log(jsondata.results);
-    dispatch(addsearchmovieinfo(jsondata?.results));
+    if (data) {
+      const jsondata = await data?.json();
+      // console.log(jsondata.results);
+      dispatch(addsearchmovieinfo(jsondata?.results));
+    }
   };
 
   return (
     <div className="-mt-40">
-      <div className="absolute -z-30">
+      <div className="absolute -z-30 ">
         <img src={Backgrdimg_URL} alt="background img" />
       </div>
 
@@ -31,7 +37,7 @@ const Gptsearchbar = () => {
           type="text"
           name="search"
           id="search"
-          placeholder="What's  On Your Mind Search Here!"
+          placeholder="Search Movies Here!"
           className="p-3 rounded-md w-3/4 mx-4"
         />
         <button
@@ -42,6 +48,7 @@ const Gptsearchbar = () => {
           Search
         </button>
       </div>
+      {searchresultfromstore && <Searchcointainers />}
     </div>
   );
 };

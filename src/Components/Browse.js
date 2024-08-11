@@ -59,12 +59,12 @@ const Browse = () => {
     api_fetch();
     apifetchpop();
     apifetchtoprated();
-     // eslint-disable-next-line
+    // eslint-disable-next-line
   }, []);
 
   return (
     <div className="no-scrollbar">
-      <Header/>
+      <Header />
       {gptdatafromreduxstore ? (
         <Gptsearchpage />
       ) : (

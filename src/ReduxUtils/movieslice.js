@@ -7,7 +7,6 @@ const movieslice = createSlice({
     popmovie: null,
     topmovie: null,
     keydata: null,
-    searchmovieinfo: null,
   },
   reducers: {
     addmovieslist: (state, action) => {
@@ -28,9 +27,6 @@ const movieslice = createSlice({
     removekeyinfo: (state, action) => {
       return null;
     },
-    addsearchmovieinfo: (state, action) => {
-      state.searchmovieinfo = action.payload;
-    },
   },
 });
 
@@ -41,6 +37,5 @@ export const {
   addtopinfo,
   addkeyinfo,
   removekeyinfo,
-  addsearchmovieinfo
 } = movieslice.actions;
 export default movieslice.reducer;

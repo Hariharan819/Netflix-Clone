@@ -11,7 +11,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const gptdatafromreduxstore = useSelector((store) => store.gptdata.gptinfos);
-  const userdata=useSelector((store)=>store.user)
+  const userdata = useSelector((store) => store.user);
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -42,6 +42,7 @@ const Header = () => {
   const gptsearchevnt = () => {
     dispatch(addgptinfo());
   };
+ 
   return (
     <div className="absolute w-[100%] px-16 py-3 bg-gradient-to-b from-gray-900 z-50   flex justify-between no-scrollbar">
       <img src={Logo_URL} alt="logo" className="w-40" />
@@ -52,7 +53,7 @@ const Header = () => {
             className="bg-green-400 px-4  my-4 rounded-sm -mx-10  text-black font-serif "
             onClick={gptsearchevnt}
           >
-            {gptdatafromreduxstore ? "HomePage" : "GPT Search"}
+            {gptdatafromreduxstore ? "HomePage" : "SearchPage"}
           </button>
           <img
             src={profile_url}
