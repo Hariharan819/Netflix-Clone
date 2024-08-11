@@ -6,6 +6,8 @@ import { adduser, removeuser } from "../ReduxUtils/userslice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { addgptinfo } from "../ReduxUtils/Gptslice";
+import { removekeyinfo } from "../ReduxUtils/movieslice";
+import { removesearchresult } from "../ReduxUtils/searchslice";
 
 const Header = () => {
   const dispatch = useDispatch();
@@ -41,6 +43,7 @@ const Header = () => {
 
   const gptsearchevnt = () => {
     dispatch(addgptinfo());
+    dispatch(removesearchresult());
   };
  
   return (
