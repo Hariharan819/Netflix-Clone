@@ -70,9 +70,10 @@ const Login = () => {
         Password.current.value
       )
         .then((userCredential) => {
+          // eslint-disable-next-line
           const user = userCredential.user;
           // navigate("/browse");
-          console.log(user)
+         // eslint-disable-next-line
         })
         .catch((error) => {
           const errorCode = error.code;
