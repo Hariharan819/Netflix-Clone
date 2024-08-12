@@ -32,6 +32,7 @@ const Videoplayground = () => {
   };
   useEffect(() => {
     moviefetchapi();
+      // eslint-disable-next-line
   }, []);
   return (
     <div>

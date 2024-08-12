@@ -59,7 +59,7 @@ const Login = () => {
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          seterrormsg(errorMessage);
+          seterrormsg(errorMessage + errorCode);
         });
     } else {
       //sigin
@@ -72,11 +72,12 @@ const Login = () => {
         .then((userCredential) => {
           const user = userCredential.user;
           // navigate("/browse");
+          console.log(user)
         })
         .catch((error) => {
           const errorCode = error.code;
           const errorMessage = error.message;
-          seterrormsg(errorMessage);
+          seterrormsg(errorMessage + errorCode);
         });
     }
   };

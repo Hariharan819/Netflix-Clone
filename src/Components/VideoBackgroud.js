@@ -22,6 +22,7 @@ const VideoBackgroud = ({ movieid }) => {
   };
   useEffect(() => {
     moviefetchapi();
+      // eslint-disable-next-line
   }, []);
   return (
     <div className="w-[100%] no-scrollbar">
