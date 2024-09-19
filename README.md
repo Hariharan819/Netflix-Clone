@@ -1,3 +1,4 @@
+# Deployed link https://flexnet-netflex-clone.netlify.app/
 -sign in /sign up page
 -routing
 -validation
@@ -7,7 +8,6 @@
 -user data storing
 -signout --- user data remove
 --tmdb for movie db
---showming trailer in browse page
 --movielist with mobie cards
 --each movie card has separate trailer video
 --search page
